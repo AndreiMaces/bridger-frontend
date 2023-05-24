@@ -1,0 +1,21 @@
+<div class="min-w-[23rem] relative">
+  <a
+    class="btn-secondary flex items-center absolute z-[1] right-[.6rem] top-[1rem] text-white bg-[#3392CC] px-3 py-1 rounded-[.2rem]"
+    [routerLink]="'/' + editUrl"
+  >
+    <mat-icon class="translate-y-[.25rem] text-[1rem]">edit</mat-icon>
+    Edit
+  </a>
+  <img
+    [src]="src"
+    [alt]="alt"
+    class="h-[11rem] object-cover w-full brightness-50 rounded-[.4rem_.4rem_0_0]"
+  />
+  <div
+    class="bg-white p-3 rounded-[0_0_.4rem_.4rem] leading-[1.5rem] flex flex-col gap-3"
+  >
+    <h1 class="text-[1.5rem] font-bold">{{ title }}</h1>
+    <span class="text-[#979797] text-[1.2rem]">{{ price | currency }}</span>
+    <p *ngIf="description" class="leading-[1.2rem]">{{ description }}</p>
+  </div>
+</div>

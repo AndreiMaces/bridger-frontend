@@ -1,0 +1,70 @@
+<mat-drawer-container
+  class="h-screen w-full"
+  [hasBackdrop]="isOnMobile"
+  autosize
+>
+  <mat-drawer
+    #drawer
+    [mode]="isOnMobile ? 'over' : 'side'"
+    class="bg-[#0F1014] p-8"
+    opened
+  >
+    <div
+      class="flex flex-col gap-8 [&>a:hover]:text-[#3392CC] [&>a:hover>svg>path]:fill-[#3392CC] [&>.active]:text-[#3392CC] [&>.active>svg>path]:fill-[#3392CC]"
+    >
+      <a
+        routerLink="overview"
+        routerLinkActive="active"
+        class="flex items-start gap-3 text-white text-xl font-[roboto]"
+      >
+        Dashboard
+      </a>
+      <a
+        routerLink="users"
+        routerLinkActive="active"
+        class="flex items-start gap-3 text-white text-xl font-[roboto]"
+      >
+        Users
+      </a>
+      <a
+        routerLink="vehicles"
+        routerLinkActive="active"
+        class="flex items-start gap-3 text-white text-xl font-[roboto]"
+      >
+        Vehicles
+      </a>
+      <a
+        routerLink="products"
+        routerLinkActive="active"
+        class="flex items-start gap-3 text-white text-xl font-[roboto]"
+      >
+        Mercantile
+      </a>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="p-5">
+    <button
+      (click)="drawer.toggle()"
+      *ngIf="isOnMobile"
+      class="bg-[#3392CC] p-3 text-white font-bold rounded flex justify-center items-center"
+    >
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+    <nav class="flex items-center justify-between mb-5">
+      <div class="[&>h2>b]:hidden">
+        <h2 class="text-gray-400 font-light font-[roboto]">
+          Dashboard
+          <b routerLink="vehicles" routerLinkActive="!inline">/Vehicles</b>
+          <b routerLink="overview" routerLinkActive="!inline">/Overview</b>
+          <b routerLink="products" routerLinkActive="!inline">/Products</b>
+          <b routerLink="users" routerLinkActive="!inline">/Users</b>
+        </h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="font-bold font-[roboto]">Welcome, User</span>
+        <img src="assets/svgs/user_image_placeholder.svg" alt="Icon" />
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

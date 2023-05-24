@@ -1,0 +1,81 @@
+<div
+  [class]="
+    'flex flex-col px-4 pt-2 pb-4 border-2 border-gray-300 [&:has(input:focus)]:border-[#3392CC] [&:has(.ng-dirty.ng-touched.ng-invalid)]:[&>.error-message]:block [&:has(.ng-dirty.ng-touched.ng-invalid)]:border-[red] rounded-lg w-full transition-all ' +
+    styleClass
+  "
+  *ngIf="labelType === LabelType.InnerLabel && inputType !== InputType.DROPDOWN"
+>
+  <span class="text-gray-500 text-xs">{{ label }}</span>
+  <div class="flex-1 w-full flex justify-center items-center">
+    <input
+      type="text"
+      class="outline-0 flex-1"
+      [type]="inputType"
+      [formControl]="control"
+      [name]="name"
+      ngDefaultControl
+    />
+    <span class="text-red text-sm hidden error-message">
+      This field is invalid.
+    </span>
+    <button
+      *ngIf="isOfPasswordType"
+      class="cursor-pointer"
+      type="button"
+      (click)="togglePasswordVisible()"
+    >
+      Toggle
+    </button>
+  </div>
+</div>
+<div
+  [class]="'flex flex-col gap-2 w-full ' + styleClass"
+  *ngIf="labelType === LabelType.OuterLabel && inputType !== InputType.DROPDOWN"
+>
+  <span class="text-gray-400 text-sm font-light">{{ label }}</span>
+  <div
+    class="flex-1 w-full flex justify-center items-center border-2 border-gray-300 px-4 py-3 rounded [&:has(input:focus)]:border-[#3392CC] [&:has(.ng-touched.ng-invalid)]:border-[red] transition-all rounded-lg"
+  >
+    <button
+      *ngIf="inputType === InputType.NUMBER"
+      class="w-5rem cursor-default text-[#3392CC] bg-gray-300 ml-[-0.5rem] mr-[1rem] px-3 py-1 rounded"
+    >
+      $
+    </button>
+    <input
+      type="text"
+      class="outline-0 flex-1 h-[1.8rem]"
+      [type]="inputType"
+      [name]="name"
+      [formControl]="control"
+      *ngIf="inputType !== InputType.TEXTAREA"
+    />
+    <textarea
+      [formControl]="control"
+      *ngIf="inputType === InputType.TEXTAREA"
+      class="w-full h-[20rem] border-0 outline-0 resize-none"
+    >
+    </textarea>
+    <button
+      *ngIf="isOfPasswordType"
+      class="cursor-pointer flex items-center"
+      (click)="togglePasswordVisible()"
+      type="button"
+    >
+      <mat-icon>remove_red_eye</mat-icon>
+    </button>
+  </div>
+</div>
+<div
+  [class]="'flex flex-col gap-2 w-full ' + styleClass"
+  *ngIf="inputType === InputType.DROPDOWN"
+>
+  <span class="text-gray-400 text-sm font-light">{{ label }}</span>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-select [formControl]="control">
+      <mat-option *ngFor="let item of list" [value]="item">
+        {{ item }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill" [class]="'remove-bottom-margin ' + styleClass">
+  <mat-icon *ngIf="icon" matPrefix>{{icon}}</mat-icon>
+  <mat-select [placeholder]="placeholder" (selectionChange)="function($event)" class="text-[1.1rem]">
+    <mat-option *ngFor="let option of options" [value]="option">
+      {{option}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

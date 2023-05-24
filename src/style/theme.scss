@@ -1,0 +1,82 @@
+.ng-tns-c31-0 {
+  color: black;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  color: black !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+  color: black;
+}
+
+.mat-drawer-content {
+  background-color: #eee;
+}
+
+//Dashboard/Overview styles
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent;
+  border: 1px solid #979797;
+  border-radius: .7rem;
+  height: 3.5rem;
+}
+
+.mat-mdc-form-field-icon-prefix>.mat-icon {
+  padding: 0 1rem;
+  color: #979797;
+}
+
+.mdc-line-ripple {
+  display: none;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  font-family: Roboto, sans-serif;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  font-size: 1.1rem;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+{
+  width: auto;
+  @apply border-2 #{!important};
+  @apply border-gray-300 #{!important};
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled.mdc-text-field--focused
+{
+  border-color: #3392CC !important;
+  @apply transition-all #{!important};
+}
+
+.ng-touched.ng-invalid > .mat-mdc-text-field-wrapper.mdc-text-field
+{
+  border-color: red !important;
+  @apply transition-all #{!important};
+
+}
+
+
+.mat-mdc-form-field-focus-overlay
+{
+  opacity: 0 !important;
+}
+
+/*
+mat-pseudo-checkbox mat-mdc-option-pseudo-checkbox mat-pseudo-checkbox-checked mat-pseudo-checkbox-minimal ng-star-inserted
+*/
+
+.remove-bottom-margin .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.white-spinner.mat-mdc-progress-spinner.mdc-circular-progress.mat-primary.mdc-circular-progress--indeterminate svg {
+  stroke: white;
+}
+
+.orange-spinner.mat-mdc-progress-spinner.mdc-circular-progress.mat-primary.mdc-circular-progress--indeterminate svg {
+  stroke: #3392CC;
+}

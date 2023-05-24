@@ -1,0 +1,37 @@
+<div class="flex flex-col lg:flex-row gap-8 overflow-hidden">
+  <div class="flex-1 min-h-[16rem]">
+    <h2>Product</h2>
+    <div class="flex flex-col bg-white p-5 gap-5">
+      <app-input
+        [labelType]="LabelType.OuterLabel"
+        label="Product Name"
+        [control]="name"
+      ></app-input>
+      <app-input
+        [labelType]="LabelType.OuterLabel"
+        label="Price"
+        [inputType]="InputType.NUMBER"
+        [control]="price"
+      ></app-input>
+    </div>
+  </div>
+  <div class="flex-1 h-[16rem]">
+    <h2>Category</h2>
+    <div class="flex flex-col bg-white p-5">
+      <app-input
+        [labelType]="LabelType.OuterLabel"
+        [inputType]="InputType.DROPDOWN"
+        [list]="firstCategoryList"
+        [control]="firstCategory"
+        label="Product Name"
+      ></app-input>
+      <app-input
+        [labelType]="LabelType.OuterLabel"
+        [inputType]="InputType.DROPDOWN"
+        [list]="secondCategoryList"
+        [control]="secondCategory"
+        label="Price"
+      ></app-input>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="w-full h-full flex flex-col justify-center items-center p-5 gap-5">
+  <image-cropper
+    style="width: 100%"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="3 / 2"
+    [resizeToWidth]="512"
+    [cropperMinWidth]="128"
+    [transform]="transform"
+    [alignImage]="'left'"
+    [style.display]="showCropper ? null : 'none'"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+  ></image-cropper>
+  <div class="w-full">
+    <app-button label="Save" styleClass="w-full" (click)="save()"></app-button>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="flex flex-col gap-8">
+  <app-go-back-header
+    second="Back to vehicles list"
+    title="Add New Vehicle"
+  ></app-go-back-header>
+  <form
+    [formGroup]="addVehicleForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col gap-8"
+  >
+    <div>
+      <h2>Cover Image</h2>
+      <app-image-uploader [imageFormControl]="imageURL"></app-image-uploader>
+    </div>
+    <app-element-name-price-category-form
+      [firstCategoryList]="firstCategoryList"
+      [secondCategoryList]="secondCategoryList"
+      [form]="firstSection"
+    ></app-element-name-price-category-form>
+    <div>
+      <h2>Vehicles Images</h2>
+      <app-multiple-image-uploader
+        [imageFormControl]="images"
+      ></app-multiple-image-uploader>
+    </div>
+    <div>
+      <h2>Description</h2>
+      <app-vehicle-description-form
+        [videoDescriptionFormControl]="videoDescription"
+        [youtubeLinkFormControl]="videoLink"
+        [titleFormControl]="videoTitle"
+      ></app-vehicle-description-form>
+    </div>
+    <div>
+      <h2>Gallery</h2>
+      <app-multiple-image-uploader
+        [imageFormControl]="gallery"
+      ></app-multiple-image-uploader>
+    </div>
+    <div>
+      <h2>Vehicle Specifications</h2>
+      <app-vehicle-specifications-form
+        [engineFormControl]="engine"
+        [featuresFormControl]="features"
+        [interiorFormControl]="interior"
+        [exteriorFormControl]="exterior"
+        [performanceUpgrades]="performanceUpgrades"
+        [dimensionsFormControl]="dimensions"
+        [shopLinkFormControl]="shopLink"
+        [specifications]="specifications"
+      ></app-vehicle-specifications-form>
+    </div>
+    <app-button label="Add Vehicle"></app-button>
+  </form>
+</div>

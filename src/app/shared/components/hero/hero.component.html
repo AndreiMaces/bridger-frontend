@@ -1,0 +1,84 @@
+<div
+  [class]="'flex flex-col lg:flex-row w-full  ' + styleClass"
+  [class.h-screen]="fullscreen"
+>
+  <div
+    class="bg-[#151A1A] h-1/2 lg:h-auto w-full lg:w-2/5 overflow-visible flex flex-col lg:items-center p-10 justify-between"
+    *ngIf="!(src?.length === 0 && innerWidth <= 1024)"
+  >
+    <div
+      class="overflow-visible flex flex-1 justify-end flex-col z-10 relative"
+      [class.justify-center]="footer.length === 0"
+    >
+      <h1
+        class="lg:min-w-[calc(100%+25rem)] tracking-wide lg:leading-[calc(5rem)] leading-[3rem] text-white uppercase text-3xl lg:text-7xl absolute bottom-[-12.5vh] lg:static"
+      >
+        {{ title }}
+      </h1>
+      <a
+        class="bg-[#3392CC] w-[13rem] text-center text-white font-bold uppercase py-2 px-5 my-3 box-content"
+        *ngIf="hasButtonLink"
+        routerLink="contact"
+        >Visit the store<mat-icon class="rotate-[45deg] translate-y-[0.25rem]"
+          >arrow_upward</mat-icon
+        ></a
+      >
+    </div>
+    <div
+      class="w-full justify-self-end self-end flex flex-1 justify-end flex-col"
+      *ngIf="footer.length > 0"
+    >
+      <p class="text-[#8A8C8C]">
+        {{ footer }}
+      </p>
+    </div>
+  </div>
+  <div class="w-full flex-grow lg:w-3/5 h-1/2 lg:h-auto z-0 relative">
+    <div *ngIf="src.length === 0" class="absolute w-[100vw] bottom-28">
+      <div
+        class="bg-[#151A1A] w-full lg:w-2/5 overflow-visible lg:hidden flex-col items-center p-5 justify-between flex"
+      >
+        <div
+          class="overflow-visible flex flex-1 justify-end flex-col z-10"
+          [class.justify-center]="footer.length === 0"
+        >
+          <h1
+            class="tracking-wide leading-[calc(3rem)] text-white uppercase text-4xl"
+          >
+            {{ title }}
+          </h1>
+          <a
+            class="bg-[#3392CC] w-[13rem] text-center text-white font-bold uppercase py-2 px-5 my-3 box-content"
+            *ngIf="hasButtonLink"
+            routerLink="contact"
+            >Visit the store<mat-icon
+              class="rotate-[45deg] translate-y-[0.25rem]"
+              >arrow_upward</mat-icon
+            ></a
+          >
+        </div>
+        <div
+          class="w-full justify-self-end self-end flex flex-1 justify-end flex-col z-10 my-5"
+          *ngIf="footer.length > 0"
+        >
+          <p class="text-[#CFCFD0] text-sm">
+            {{ footer }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <app-carrousel
+      [slides]="slides"
+      *ngIf="src.length === 0"
+      [hasBottomCard]="hasBottomCard"
+      [isLoading]="isLoading"
+    ></app-carrousel>
+    <div
+      [class]="
+        'brightness-50 absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center'
+      "
+      [style]="'background-image: url(' + src + ')'"
+      *ngIf="src.length > 0"
+    ></div>
+  </div>
+</div>

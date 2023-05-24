@@ -1,0 +1,59 @@
+<div
+  [class]="
+    'brightness-50 absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center'
+  "
+  [style]="'background-image: url(' + getCurrentSlideUrl() + ')'"
+  *ngIf="!isLoading"
+></div>
+<div
+  [class]="
+    'bg-gray-600 brightness-50 absolute flex justify-center items-center inset-0'
+  "
+  *ngIf="isLoading"
+>
+  <mat-spinner color="warn"></mat-spinner>
+</div>
+<div
+  class="absolute right-0 h-full hidden md:flex flex-col items-center justify-center gap-6 p-10"
+  *ngIf="!isLoading"
+>
+  <div
+    [class]="
+      'text-white border-white px-3 py-2 rounded-full cursor-pointer' +
+      (slideIndex === currentIndex ? ' bg-[#fff5]' : '')
+    "
+    *ngFor="let slide of slides; let slideIndex = index"
+    (click)="goToSlide(slideIndex)"
+  >
+    0{{ slideIndex + 1 }}
+  </div>
+</div>
+<div
+  class="absolute bottom-0 right-0 h-[7rem] flex align-center justify-center max-w-full my-3 px-3"
+  *ngIf="hasBottomCard && !isLoading"
+>
+  <div
+    class="w-[20rem] flex flex-col justify-between uppercase bg-[#0F10147F] backdrop-blur p-3"
+  >
+    <div>
+      <h2 class="line-clamp-1 text-white text-2xl">
+        {{ slides?.at(currentIndex)?.name }}
+      </h2>
+      <p class="before:content-['$'] text-[#8A8886]">
+        {{ slides?.at(currentIndex).price }}
+      </p>
+    </div>
+    <div class="font-bold text-[#3392CC]">
+      <a [routerLink]="'defenders/' + slides?.at(currentIndex).id"
+        >Read more
+        <mat-icon class="rotate-[45deg] translate-y-[0.25rem]"
+          >arrow_upward</mat-icon
+        >
+      </a>
+    </div>
+  </div>
+  <div
+    class="w-[8rem] bg-cover bg-no-repeat bg-center"
+    [style]="'background-image: url(' + slides?.at(currentIndex).avatar + ')'"
+  ></div>
+</div>

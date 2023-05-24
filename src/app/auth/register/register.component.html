@@ -1,0 +1,48 @@
+<div class="flex flex-col lg:flex-row h-screen max-w-4xl mx-auto">
+  <div class="flex-1 flex flex-col justify-center items-start h-full p-8">
+    <div>
+      <h1 class="text-[#3392CC] text-6xl">Register</h1>
+      <br />
+    </div>
+    <form
+      class="flex flex-col gap-8 w-full mt-5"
+      [formGroup]="profileForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <app-input
+        label="First Name"
+        [inputType]="InputType.TEXT"
+        [labelType]="LabelType.OuterLabel"
+        name="firstName"
+        [control]="firstName"
+      ></app-input>
+      <app-input
+        label="Last name"
+        [inputType]="InputType.TEXT"
+        [labelType]="LabelType.OuterLabel"
+        name="lastName"
+        [control]="lastName"
+      ></app-input>
+      <app-input
+        label="Email"
+        [inputType]="InputType.TEXT"
+        [labelType]="LabelType.OuterLabel"
+        name="email"
+        [control]="email"
+      ></app-input>
+      <app-input
+        label="Password"
+        name="password"
+        [inputType]="InputType.PASSWORD"
+        [labelType]="LabelType.OuterLabel"
+        [control]="password"
+      ></app-input>
+      <app-button label="Register"></app-button>
+    </form>
+    <a
+      href="#"
+      class="underline text-[#3392CC] hover:text-[#c24c10] uppercase text-sm my-3 self-end"
+      >Forgot Password</a
+    >
+  </div>
+</div>

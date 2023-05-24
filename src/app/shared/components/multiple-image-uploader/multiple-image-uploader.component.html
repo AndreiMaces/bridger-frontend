@@ -1,0 +1,44 @@
+<div class="flex flex-wrap bg-white p-5 gap-5">
+  <div
+    class="bg-white rounded-lg p-5 max-w-full w-[15rem] h-[15rem] flex justify-center items-center"
+  >
+    <div
+      class="h-full w-full flex justify-center items-center border-2 border-dashed border-[#3392CC] rounded-lg bg-gray-100"
+    >
+      <div
+        class="w-full h-full flex justify-center items-center cursor-pointer relative"
+      >
+        <input
+          type="file"
+          id="profileImage"
+          class="border-2 w-full h-full absolute z-10 opacity-0 hover:cursor-pointer"
+          (change)="fileChangeEvent($event)"
+        />
+        <div class="flex flex-col gap-5 justify-center items-center">
+          <img src="assets/svgs/upload_image.svg" />
+          <p class="text-center text-gray-400">
+            <span class="text-[#3392CC] underline">Click to upload</span> or
+            <br />
+            drag and drop
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="w-[15rem] h-[15rem] relative cursor-pointer"
+    *ngFor="let imageString of base64Array; let i = index"
+    (click)="removeImage(i)"
+  >
+    <img
+      [src]="imageString"
+      alt="file upload"
+      class="w-full h-full object-contain rounded-lg"
+    />
+    <div
+      class="absolute inset-0 transition-all hover:bg-[#00000099] [&>p]:hidden [&:hover>p]:block flex justify-center items-center rounded-lg"
+    >
+      <p class="text-[#3392CC] text-xl font-bold font-[roboto]">Remove image</p>
+    </div>
+  </div>
+</div>
