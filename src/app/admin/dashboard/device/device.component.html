@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-5 p-5">
+  <div class="flex w-full gap-5">
+    <app-sensor-chart
+      [link]="link"
+      sensor="gyroscope"
+      class="flex-1"
+    ></app-sensor-chart>
+    <app-sensor-chart
+      [link]="link"
+      sensor="magnetometer"
+      class="flex-1"
+    ></app-sensor-chart>
+  </div>
+  <div class="flex gap-5 w-full">
+    <app-cube [link]="link" class="flex-1"></app-cube>
+    <app-light-chart [link]="link" class="flex-1"></app-light-chart>
+  </div>
+</div>

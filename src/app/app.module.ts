@@ -4,8 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LocalSharedModule } from './shared/local-shared.module';
+import { InterceptorService } from './shared/interceptors/interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,9 @@ import { LocalSharedModule } from './shared/local-shared.module';
     LocalSharedModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   exports: [],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  server: 'https://qa.smoketest.cst.ro/api',
+  server: 'https://api.watch.macesandrei.com',
 };

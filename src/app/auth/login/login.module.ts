@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { LocalSharedModule } from '../../shared/local-shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatLegacySnackBarModule } from '@angular/material/legacy-snack-bar';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -16,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     LocalSharedModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
+    MatLegacySnackBarModule,
   ],
 })
 export class LoginModule {}

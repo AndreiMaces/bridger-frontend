@@ -35,15 +35,16 @@ export class LoginComponent {
         next: (response) => {
           this.userService.logInUser(response);
           this.router.navigate(['/dashboard']);
-          this.isLoading = false;
         },
         error: (error) => {
           console.log(error);
           this.isLoading = false;
-          if (error.error.error.includes('INVALID_CREDENTIALS'))
+          if (error.error.error === 'INVALID_CREDENTIALS') {
             this.snackBar.open('Invalid credentials.', 'Undo', {
               duration: 3000,
             });
+          }
+
           if (error.error.error.includes('EMAIL_NOT_CONFIRMED'))
             this.snackBar.open('Email not confirmed', 'Undo', {
               duration: 3000,

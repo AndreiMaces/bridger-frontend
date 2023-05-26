@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { ConfirmEmailMessageComponent } from './confirm-email-message/confirm-email-message.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'confirm-email/:token',
     component: ConfirmEmailComponent,
+  },
+  {
+    path: 'confirm-email-message',
+    component: ConfirmEmailMessageComponent,
   },
 ];
 

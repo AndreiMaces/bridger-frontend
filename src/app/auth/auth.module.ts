@@ -6,9 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LocalSharedModule } from '../shared/local-shared.module';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ConfirmEmailMessageComponent } from './confirm-email-message/confirm-email-message.component';
 
 @NgModule({
-  declarations: [ConfirmEmailComponent],
+  declarations: [ConfirmEmailComponent, ConfirmEmailMessageComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

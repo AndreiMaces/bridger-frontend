@@ -1,24 +1,51 @@
-<div class="flex flex-col justify-center">
-  <div class="flex flex-wrap justify-between w-full md:text-start mb-[3.8rem]">
-    <h1 class="text-[3rem] font-[Roboto] font-bold text-[#3392CC]">
-      Dashboard
-    </h1>
-    <app-search-field
-      placeholder="Search"
-      icon="search"
-      styleClass="w-[20rem]"
-      [control]="searchValue"
-      (keyup)="search()"
-    >
-    </app-search-field>
-  </div>
-  <main>
+<div class="flex gap-5 m-8">
+  <div
+    class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+  >
     <div
-      class="flex flex-col md:flex-row flex-wrap gap-[2rem] justify-center md:justify-start"
+      class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex items-center justify-center"
     >
-      <app-overview-card cardTitle="Total Vehicles"></app-overview-card>
-      <app-overview-card cardTitle="Total Products"></app-overview-card>
-      <app-overview-card cardTitle="Users"></app-overview-card>
+      <qrcode
+        [qrdata]="currentUser.id"
+        [width]="256"
+        [errorCorrectionLevel]="'M'"
+        *ngIf="currentUser"
+      ></qrcode>
     </div>
-  </main>
+    <p class="font-normal text-gray-700 dark:text-gray-400">
+      Scan the qr code in order to access your device sensors.
+    </p>
+  </div>
+
+  <div class="relative overflow-x-auto flex-1">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Device Name</th>
+          <th scope="col" class="px-6 py-3">Brand</th>
+          <th scope="col" class="px-6 py-3">Model Name</th>
+          <th scope="col" class="px-6 py-3">Ip Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer dark:hover:bg-gray-700"
+          *ngFor="let device of devices"
+          (click)="goToDevice(device.link)"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            {{ device.deviceInfo.deviceName }}
+          </th>
+          <td class="px-6 py-4">{{ device.deviceInfo.brand }}</td>
+          <td class="px-6 py-4">{{ device.deviceInfo.modelName }}</td>
+          <td class="px-6 py-4">{{ device.deviceIp }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

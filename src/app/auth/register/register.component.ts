@@ -20,6 +20,7 @@ export class RegisterComponent {
     password: new FormControl(''),
   });
   LabelType = LabelType;
+  isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,10 +29,15 @@ export class RegisterComponent {
   ) {}
 
   onSubmit(): void {
+    this.isLoading = true;
     if (this.profileForm.valid) {
       this.accountController.register(this.createPayload()).subscribe({
         next: () => {
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth/confirm-email-message']);
+          this.isLoading = false;
+        },
+        error: () => {
+          this.isLoading = false;
         },
       });
     }

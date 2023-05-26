@@ -25,4 +25,11 @@ export class AuthControllerService {
   confirmEmail(token: string): Observable<User> {
     return this.apiService.get(`${this._resourceApi}/confirm-email/${token}`);
   }
+
+  resendEmailConfirmation(body: { email: string }): Observable<any> {
+    return this.apiService.post(
+      `${this._resourceApi}/resend-email-confirmation`,
+      body
+    );
+  }
 }

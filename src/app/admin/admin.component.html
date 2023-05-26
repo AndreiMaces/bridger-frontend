@@ -1,70 +1,116 @@
-<mat-drawer-container
-  class="h-screen w-full"
-  [hasBackdrop]="isOnMobile"
-  autosize
->
-  <mat-drawer
-    #drawer
-    [mode]="isOnMobile ? 'over' : 'side'"
-    class="bg-[#0F1014] p-8"
-    opened
+<main *ngIf="!isLoadingUser" class="h-full">
+  <nav
+    class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 h-[60px]"
   >
-    <div
-      class="flex flex-col gap-8 [&>a:hover]:text-[#3392CC] [&>a:hover>svg>path]:fill-[#3392CC] [&>.active]:text-[#3392CC] [&>.active>svg>path]:fill-[#3392CC]"
-    >
-      <a
-        routerLink="overview"
-        routerLinkActive="active"
-        class="flex items-start gap-3 text-white text-xl font-[roboto]"
-      >
-        Dashboard
-      </a>
-      <a
-        routerLink="users"
-        routerLinkActive="active"
-        class="flex items-start gap-3 text-white text-xl font-[roboto]"
-      >
-        Users
-      </a>
-      <a
-        routerLink="vehicles"
-        routerLinkActive="active"
-        class="flex items-start gap-3 text-white text-xl font-[roboto]"
-      >
-        Vehicles
-      </a>
-      <a
-        routerLink="products"
-        routerLinkActive="active"
-        class="flex items-start gap-3 text-white text-xl font-[roboto]"
-      >
-        Mercantile
-      </a>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content class="p-5">
-    <button
-      (click)="drawer.toggle()"
-      *ngIf="isOnMobile"
-      class="bg-[#3392CC] p-3 text-white font-bold rounded flex justify-center items-center"
-    >
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
-    <nav class="flex items-center justify-between mb-5">
-      <div class="[&>h2>b]:hidden">
-        <h2 class="text-gray-400 font-light font-[roboto]">
-          Dashboard
-          <b routerLink="vehicles" routerLinkActive="!inline">/Vehicles</b>
-          <b routerLink="overview" routerLinkActive="!inline">/Overview</b>
-          <b routerLink="products" routerLinkActive="!inline">/Products</b>
-          <b routerLink="users" routerLinkActive="!inline">/Users</b>
-        </h2>
-      </div>
+    <div class="flex flex-wrap justify-between items-center">
       <div class="flex items-center gap-3">
-        <span class="font-bold font-[roboto]">Welcome, User</span>
-        <img src="assets/svgs/user_image_placeholder.svg" alt="Icon" />
+        <a routerLink="/dashboard" class="flex mr-4 items-center">
+          <img src="assets/logo.png" class="mr-3 h-4" alt="FlowBite Logo" />
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            >Bridger</span
+          >
+        </a>
       </div>
-    </nav>
+      <div class="hidden w-full md:block md:w-auto">
+        <ul
+          class="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0"
+        >
+          <li>
+            <a
+              routerLink="/dashboard"
+              class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >Pricing</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="flex items-center lg:order-2">
+        <p class="py-2 pl-3 pr-4 text-white">{{ currentUser?.username }}</p>
+        <button
+          type="button"
+          class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="h-[calc(100%-60px)]" *ngIf="!isLoadingContent && !isLoadingUser">
     <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+  </div>
+  <div
+    class="h-[calc(100%-60px)] flex justify-center items-center"
+    *ngIf="isLoadingContent"
+  >
+    <svg
+      aria-hidden="true"
+      class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+      viewBox="0 0 100 101"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+        fill="currentColor"
+      />
+      <path
+        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+        fill="currentFill"
+      />
+    </svg>
+  </div>
+</main>
+<div
+  role="status"
+  *ngIf="isLoadingUser || isLoadingContent"
+  class="w-full h-full flex justify-center items-center"
+>
+  <svg
+    aria-hidden="true"
+    class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+    viewBox="0 0 100 101"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+      fill="currentColor"
+    />
+    <path
+      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+      fill="currentFill"
+    />
+  </svg>
+  <span class="sr-only">Loading...</span>
+</div>
