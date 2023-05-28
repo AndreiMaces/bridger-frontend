@@ -1,4 +1,6 @@
-# Frontend
+# What is this project about?
+This is the dashboard of a service named Bridger that offers a user the ability to broadcast it's phone sensors to an aplication through a web socket. 
+The service itself is accessible in "bridger-backend" repository. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
