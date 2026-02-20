@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  server: 'https://api.watch.macesandrei.com',
+  server: 'https://bridger-backend.macesandrei.com',
 };
 
 /*
